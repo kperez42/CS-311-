@@ -1,0 +1,699 @@
+//Notes CS 311 Notes
+//01/23/25 Class Notes Practice problems
+
+
+
+
+
+//***********************************************************LECTURE VIDEO 5 FOR CS 311*********************************************************
+
+
+//Part 1
+#include <iostream>
+using namespace std;
+
+
+int main()
+
+{
+    const int N = 16;
+    int u[N] = {13,19,22,27,31,35,44,47,53,59,71,75,84,89,93,97};
+    int x;
+    int blue;
+    int green;
+    int central=-1;
+    
+    cin >> x;
+    
+    blue = 0;
+    green = N - 1;
+    while (blue + 1 < green)
+    {
+        central = (blue +green) / 2;
+        if ( x == u[central])
+            break;
+        if ( x > u[central])
+            blue = central;
+        else
+            green = central;
+        
+    }
+    if ( blue + 1 < green)
+    {
+        cout << central << endl;
+    }
+    else
+    {
+        cout << "Not Found" << endl;
+    }
+}
+
+
+
+//Part 2
+//Code for the Sorting Algorithm
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    const int N = 16;
+    int u[N] = {71,89,59,47,84,53,93,97,75,44,13,22,31,35,19,27};
+    int blue;
+    int green;
+    int buf;
+    
+    for (blue = N - 2; blue >= 0; blue --)
+    {
+        for (green = blue + 1; green < N; green ++)
+        {
+            if (u[green] < u[green-1])
+            {
+                buf = u[green];
+                u[green] = u[green - 1];
+                u[green -1] = buf;
+                
+            }
+            else
+                break;
+            
+        }
+    }
+    
+    for (int j = 0; j < N; j++)
+        cout << u[j] << endl;
+    
+}
+
+
+ 
+
+
+//*****************************************************LECTURE VIDEO 4 FOR CS 311*********************************************************
+
+//Part1
+//Without Loops
+#include <iostream>
+using namespace std;
+
+int main()
+
+{
+    cout << "@" << endl;
+    cout << "@@" << endl;
+    cout << "@@@" << endl;
+    cout << "@@@@" << endl;
+    cout << "@@@@@" << endl;
+    
+}
+
+
+
+//Part 2
+//Using Loops
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n = 5;
+    int j;
+    for (j = 1; j <= n; j++)
+    
+    {
+        cout << endl;
+        
+    }
+    
+}
+
+//Part 3
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    const int n = 5;
+    int j;
+    for (j = 1; j <= n; j++)
+    {
+        cout << "@";
+        cout << "@";
+        cout << "@";
+        cout << endl;
+        
+    }
+}
+
+
+//Part 4
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    const int n = 5;
+    int j;
+    int k;
+    for (j = 1; j <= n; j++)
+    {
+        for (k = 1; k <= j; k++)
+        cout << "@";
+        
+        cout << endl;
+        
+    }
+}
+
+
+
+//Part 5
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    const int n = 5;
+    int j;
+    int k;
+    for (j = 1; j <= n; j++)
+    {
+        for (k = 1; k <= j; k++)
+        cout << "@";
+        for (k = 1; k <= n - j; k++)
+            cout << "#";
+        cout << endl;
+        
+    }
+}
+
+
+
+
+//Part 6
+
+#include <iostream>
+using namespace std;
+
+int main()
+
+{
+    int p;
+    int r;
+    cin >> p;
+    for (r = 2; r < p; r ++)
+        
+        if (p % r == 0)
+            break;
+    if( r == p)
+        cout << "Prime";
+    else
+        cout << "Nonprime";
+    
+}
+
+
+//Part 7
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n = 1000;
+    int p;
+    for (p = 3; p <= n; p++)
+    {
+        int r;
+        for (r = 2; r < p; r ++)
+            
+            if (p % r == 0)
+                break;
+        if( r == p)
+            cout << p << endl;
+        
+    }
+}
+
+ 
+//*****************************************************LECTURE VIDEO 3 FOR CS 311*********************************************************
+//Part 1 Templates
+//Templates
+
+#include <iostream>
+using namespace std;
+
+class MyArray
+{
+    double data[50];
+    public:
+    MyArray();
+    double getdata(int);
+    void setdata(int, double);
+};
+
+
+int main()
+{
+    MyArray u;
+    u.setdata(7,500);
+    double h;
+    h = u.getdata(7);
+    cout << h << endl;
+    
+    
+}
+MyArray::MyArray()
+{
+    
+    
+}
+
+double MyArray::getdata(int i)
+{
+    if (i < 0 || i >= 50)
+        return 0;
+    return this->data[i];
+    
+}
+void MyArray::setdata(int i, double val)
+{
+    if (i < 0 || i >= 50)
+        return;
+    this->data[i] = val;
+    
+}
+
+
+
+//Third Video Lecture
+//Part 1 Templates  **************************  Modifying Part 1 **********************************
+//Templates
+#include <iostream>
+using namespace std;
+
+class Fraction
+{
+public:
+    int p;
+    int q;
+    
+};
+
+template <typename T1>
+class MyArray
+{
+    T1 data[50];
+    public:
+    MyArray();
+    T1 getdata(int);
+    void setdata(int, T1);
+};
+
+typedef MyArray<int> MyArrayInt;
+typedef MyArray<double> MyArrayDouble;
+
+int main()
+{
+    MyArray<Fraction> f;
+    Fraction r;
+    r.p = 2;
+    r.q = 3;
+    f.setdata(7, r);
+    r = f.getdata(7);
+    
+    MyArrayInt u;
+    u.setdata(7,3.14);
+    double h;
+    h = u.getdata(7);
+    cout << h << endl;
+    
+    MyArrayDouble z;
+    z.setdata(7,3.14);
+    h = z.getdata(7);
+    cout << h << endl;
+}
+
+template <typename T2>
+MyArray<T2>::MyArray()
+{
+
+}
+
+template <typename T2>
+T2 MyArray<T2>::getdata(int i)
+{
+    
+    if (i < 0 || i >= 50)
+        return T2();
+    return this->data[i];
+}
+
+template <typename T1>
+void MyArray<T1>::setdata(int i, T1 val)
+{
+    if (i < 0 || i >= 50)
+        return;
+    this->data[i] = val;
+    
+}
+ 
+ 
+//Part 2 Templates
+//Templates
+
+#include <iostream>
+using namespace std;
+
+ 
+template <typename T1>
+T1 mult(T1 a, T1 b, T1 c)
+{
+    return a * b * c;
+
+}
+
+int main()
+{
+    
+    int r;
+    r = mult (4,7,5);
+    cout << r << endl;
+    double h;
+    h = mult (4.1,5.0,3.5);
+    cout << h << endl;
+    
+    
+}
+
+//************************************LECTURE VIDEO 2 FOR CS 311**************************************************************************
+
+//Second Video Lecture
+//Part 1 Video Lecture Pointers, Arrays, Dynamic Memory Allocation
+
+
+//Pointers
+#include <iostream>
+using namespace std;
+
+int main()
+
+{
+    double u;
+    double z;
+    
+    u = 3.14;
+    z = 2.71;
+    
+    cout << u << endl;
+    cout << z << endl;
+    
+    cout << &u << endl;
+    cout << &z << endl;
+    
+    void *p;
+    p = &u;
+    cout << p << endl;
+    
+    cout << sizeof(p) << endl;
+    
+    void *q;
+    
+    q = p;
+    if (p == q)
+        cout << "Yes" << endl;
+    else
+        cout << "No"  << endl;
+    p = 0;
+    
+}
+
+
+//Second Video Lecture
+//Part 2 Video Lecture Pointers, Arrays, Dynamic Memory Allocation
+
+//Pointers
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double u;
+    u = 3.14;
+    
+    double *q;
+    q = &u;
+    
+    *q = 8.31;
+    
+    u = 8.31;
+    
+    cout << u << endl;
+    
+    
+}
+
+
+//Second Video Lecture
+//Part 2 Video Lecture Pointers, Arrays, Dynamic Memory Allocation
+
+//Arrays
+
+#include <iostream>
+using namespace std;
+
+int main()
+
+{
+    double u[5];
+    cout << u << endl;
+    cout << &u[0] << endl;
+    double *p;
+    p = u + 1;
+    *p = 8.31;
+    cout << u[1] << endl;
+    *u = 9.8;
+    cout << u[0] << endl;
+    *(u + 1) = 2.71;
+    cout << u[1] << endl;
+    double *q;
+    q = u + 4;
+    int n = q - p;
+    cout << n << endl;
+    
+}
+
+
+//Second Video Lecture
+//Part 2 Video Lecture Pointers, Arrays, Dynamic Memory Allocation
+
+//Arrays or Dynamic Memory Allocation
+
+#include <iostream>
+using namespace std;
+
+
+int main ()
+
+{
+    int n;
+    cin >> n;
+    if (n <= 0)
+        return -1;
+    
+    int * p;
+    p = new int[n];
+    *p = 2000;
+    *(p + 1) = 7000;
+    *(p + 3 ) = 5000;
+    cout << p[1] << endl;
+    cout << p[3] << endl;
+    
+    int *q;
+    q = p;
+    
+    for (int k = 0; k < n; k++)
+        p[k] = 0;
+    
+    delete []q;
+    
+    cout << "Good Bye" << endl;
+    
+}
+
+
+
+//Second Video Lecture
+//Part 2 Video Lecture Pointers, Arrays, Dynamic Memory Allocation
+
+//Dynamic Memory Allocation
+
+#include <iostream>
+using namespace std;
+
+int main()
+
+{
+    
+    for (int j = 0; j < 1000000; j++)
+        
+    {
+        int * p;
+        p = new int[1000000];
+        //doing the job
+        
+    }
+}
+
+
+
+
+//************************************LECTURE VIDEO 1 FOR CS 311**************************************************************************
+
+//First Video Lecture
+//Part 1 Video Lecture Stack, Queue
+
+//Stack 
+#include <iostream>
+using namespace std;
+
+
+main()
+{
+    int n;
+    cin >> n;
+    double *u;
+    u = new double[n];
+    for (int i = 0; i < n; i++)
+        cin >> u[i];
+    
+    
+    delete [] u;
+    return 0;
+    
+}
+
+
+//First Video Lecture
+//Part 2 Video Lecture Stack, Queue
+
+//Stack
+#include <iostream>
+using namespace std;
+
+
+class Node
+
+{
+    public;
+    double data;
+    Node * ptr;
+    
+};
+
+main()
+
+{
+    int info;
+    cin >> info;
+    Node *p = 0;
+    Node *r = 0;
+    while (info != -1)
+    {
+      p = new Node;
+        p->data = info;
+        p->ptr = r;
+        r = p;
+        cin >> info;
+    }
+    while(r != 0)
+    {
+        cout << r->data << endl;
+        r = r->ptr;
+        
+    }
+    
+    r = p;
+    
+    while(p != 0)
+        
+    {
+        
+        r = p->ptr;
+        delete p;
+        p = r;
+    }
+}
+
+
+
+//First Video Lecture
+//Part 3 Video Lecture Stack, Queue
+
+// Queue
+#include <iostream>
+using namespace std;
+
+
+class Node
+
+{
+    public:
+    double data;
+    Node * ptr;
+    
+};
+
+main()
+
+{
+    Node *p;
+    Node *r;
+    
+    int info;
+    cin >> info;
+    if (info != -1)
+        
+    {
+        p = new Node;
+        p->data = info;
+        p->ptr = 0;
+        r = p;
+        cin >> info;
+        while(info != -1)
+            
+        {
+            r->ptr = new Node;
+            r = r->ptr;
+            r->data = info;
+            r->ptr = 0;
+            cin >> info;
+        }
+        
+        r = p;
+        
+        while(r != 0)
+            
+        {
+            cout << r->data >> endl;
+            cout << r->ptr;
+        }
+        
+        r = p;
+        while ( p!= 0)
+        {
+            r = p->ptr;
+            delete p;
+            p = r;
+        }
+    }
+    
+}
+
+
+//******************************************************LECTURE VIDEO 1 FOR CS 311*********************************************************
+
+
