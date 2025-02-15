@@ -1,0 +1,6 @@
+ /home/students/perez437/CS311Progs/HWPrograms/forHW2/HW2P1_search:
+  total used in directory 112 available 890.9 GiB
+  drwxr-x--- 2 perez437 students    72 Jan 29 11:13 .
+  drwxr-x--- 4 perez437 students    85 Jan 29 11:13 ..
+  -rw-r----- 1 perez437 students  1331 Jan 30 12:50 binsearch.cpp
+  -rwxr-x--- 1 perez437 students 13272 Jan 30 12:50 hw2binarysearchDemo.out
